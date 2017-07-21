@@ -29,7 +29,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
-	<string>This app has read and write access to your calendars</string>
+	<string>This app has read and write access to your calendars.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This app need access contacts of your phone.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
