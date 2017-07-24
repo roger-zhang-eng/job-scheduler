@@ -43,6 +43,8 @@ typedef void(^EventSaveCompletionBlockType)(BOOL);
 - (instancetype)initWithEventStore:(EKEventStore*)eventStore;
 - (void)checkEventStoreAccessForCalendar:(void (^)(BOOL accessGranted))completion;
 - (void)saveEvent:(EKEvent*)event completion:(void (^)(BOOL saved))completion;
+- (EKSource*)sourceInEventStore:(EKSourceType)type title:(NSString*)title;
+- (EKCalendar*)calendarWithTitle:(NSString*)title type:(EKCalendarType)type eventType:(EKEntityType)eventType;
 
 @end
 

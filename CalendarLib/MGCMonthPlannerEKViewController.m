@@ -412,7 +412,8 @@ static NSString* const EventCellReuseIdentifier = @"EventCellReuseIdentifier";
 
 - (MGCEventView*)monthPlannerView:(MGCMonthPlannerView*)view cellForNewEventAtDate:(NSDate*)date
 {
-    EKCalendar *defaultCalendar = [self.eventStore defaultCalendarForNewEvents];
+    //EKCalendar *defaultCalendar = [self.eventStore defaultCalendarForNewEvents];
+    EKCalendar *defaultCalendar = [self.eventKitSupport calendarWithTitle:@"TestCal" type:EKSourceTypeLocal eventType:EKEntityTypeEvent];
     
     MGCStandardEventView *evCell = [MGCStandardEventView new];
     evCell.title = NSLocalizedString(@"New Event", nil);

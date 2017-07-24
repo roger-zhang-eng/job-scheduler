@@ -420,8 +420,8 @@ static NSString* const EventCellReuseIdentifier = @"EventCellReuseIdentifier";
 
 - (MGCEventView*)dayPlannerView:(MGCDayPlannerView*)view viewForNewEventOfType:(MGCEventType)type atDate:(NSDate*)date
 {
-    EKCalendar *defaultCalendar = [self.eventStore defaultCalendarForNewEvents];
-    
+    //EKCalendar *defaultCalendar = [self.eventStore defaultCalendarForNewEvents];
+    EKCalendar *defaultCalendar = [self.eventKitSupport calendarWithTitle:@"TestCal" type:EKSourceTypeLocal eventType:EKEntityTypeEvent];
     MGCStandardEventView *evCell = [MGCStandardEventView new];
     evCell.title = NSLocalizedString(@"New Event", nil);
     evCell.color = [UIColor colorWithCGColor:defaultCalendar.CGColor];

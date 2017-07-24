@@ -62,6 +62,42 @@
     return _eventStore;
 }
 
+- (EKSource*)sourceInEventStore:(EKSourceType)type title:(NSString*)title
+{
+    for (EKSource *source in _eventStore.sources) {
+        if (source.sourceType == type)
+        {
+            return source;
+        }
+    }
+    
+    return NULL;
+}
+
+- (EKCalendar*)calendarWithTitle:(NSString*)title type:(EKCalendarType)type eventType:(EKEntityType)eventType
+{
+    EKCalendar *targetCalendar = NULL;
+    
+    for (EKCalendar *calendar in _eventStore.calendars)
+    {
+        if ([calendar.title isEqualToString:title] && calendar.type == type)
+        {
+            targetCalendar = calendar;
+        }
+    }
+    
+    //If cannot find target calendar, create it.
+    if (targetCalendar == NULL) {
+        targetCalendar = [EKCalendar calendarWithEventStore:_eventStore];
+        targetCalendar.title = title;
+        targetCalendar.source = [self sourceInEventStore:EKSourceTypeLocal title:title];
+        [_eventStore saveCalendar:targetCalendar commit:YES error:nil];
+        NSLog(@"Create calendar with id = %@", targetCalendar.calendarIdentifier);
+    }
+    
+    return targetCalendar;
+}
+
 #pragma mark - Calendar access authorization
 
 - (void)checkEventStoreAccessForCalendar:(void (^)(BOOL accessGranted))completion
