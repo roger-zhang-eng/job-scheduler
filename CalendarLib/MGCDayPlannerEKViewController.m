@@ -170,8 +170,17 @@ static NSString* const EventCellReuseIdentifier = @"EventCellReuseIdentifier";
     [self.eventKitSupport checkEventStoreAccessForCalendar:^(BOOL granted) {
         if (granted) {
             NSArray *calendars = [self.eventStore calendarsForEntityType:EKEntityTypeEvent];
-            self.visibleCalendars = [NSSet setWithArray:calendars];
-            [self reloadEvents];
+            
+            for (EKCalendar *targetCalendar in calendars)
+            {
+                if ([targetCalendar.title isEqualToString:@"TestCal"])
+                {
+                    //set the target calendar into visibleCalendars
+                    self.visibleCalendars = [NSSet setWithObjects:targetCalendar, nil];
+                    [self reloadEvents];
+                    break;
+                }
+            }
         }
     }];
     

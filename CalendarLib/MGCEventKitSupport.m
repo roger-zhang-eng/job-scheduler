@@ -83,6 +83,7 @@
         if ([calendar.title isEqualToString:title] && calendar.type == type)
         {
             targetCalendar = calendar;
+            break;
         }
     }
     
